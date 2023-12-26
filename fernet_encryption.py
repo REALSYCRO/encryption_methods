@@ -6,6 +6,8 @@ import getpass
 import cryptography
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
+from colorama import Fore, init
+init(convert=True)
 
 def generate_salt(size=16):
     """Generate the salt used for key derivation, `size` is the length of the salt to generate"""
@@ -60,7 +62,7 @@ def decrypt(filename, key):
     try:
         decrypted_data = f.decrypt(encrypted_data)
     except cryptography.fernet.InvalidToken:
-        print("[!] Invalid token, most likely the password is incorrect")
+        print(f"{Fore.YELLOW}[!] Invalid token, most likely the password is incorrect{Fore.RESET}")
         return
     # write the original file
     with open(filename, "wb") as file:
@@ -70,7 +72,7 @@ def encrypt_folder(foldername, key):
     # if it's a folder, encrypt the entire folder (i.e all the containing files)
     for child in pathlib.Path(foldername).glob("*"):
         if child.is_file():
-            print(f"[*] Encrypting {child}")
+            print(f"{Fore.GREEN}[*] Encrypting {child}{Fore.RESET}")
             # encrypt the file
             encrypt(child, key)
         elif child.is_dir():
