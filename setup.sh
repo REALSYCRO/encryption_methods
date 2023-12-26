@@ -2,7 +2,7 @@
 
 
 if ! command -v pip &> /dev/null; then
-    echo "Pip ist nicht installiert. Bitte installiere pip, um fortzufahren."
+    echo "Pip is not installed. Please install pip."
     exit 1
 fi
 
