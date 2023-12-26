@@ -61,6 +61,7 @@ def decrypt(filename, key):
     # decrypt data
     try:
         decrypted_data = f.decrypt(encrypted_data)
+        print(f"{Fore.GREEN}[+]{Fore.RESET} File decrypted")
     except cryptography.fernet.InvalidToken:
         print(f"{Fore.YELLOW}[!] Invalid token, most likely the password is incorrect{Fore.RESET}")
         return
@@ -72,9 +73,10 @@ def encrypt_folder(foldername, key):
     # if it's a folder, encrypt the entire folder (i.e all the containing files)
     for child in pathlib.Path(foldername).glob("*"):
         if child.is_file():
-            print(f"{Fore.GREEN}[*] Encrypting {child}{Fore.RESET}")
+            print(f"[*] Encrypting {child}")
             # encrypt the file
             encrypt(child, key)
+            print(f"{Fore.GREEN}[+] Encrypted{Fore.RESET}")
         elif child.is_dir():
             # if it's a folder, encrypt the entire folder by calling this function recursively
             encrypt_folder(child, key)
@@ -90,7 +92,7 @@ def decrypt_folder(foldername, key):
             # if it's a folder, decrypt the entire folder by calling this function recursively
             decrypt_folder(child, key)
 
-if __name__ == "__main__":
+def fernet_encryption():
     import argparse
     parser = argparse.ArgumentParser(description="File Encryptor Script with a Password")
     parser.add_argument("path", help="Path to encrypt/decrypt, can be a file or an entire folder")
@@ -131,3 +133,7 @@ if __name__ == "__main__":
             decrypt_folder(args.path, key)
     else:
         raise TypeError("Please specify whether you want to encrypt the file or decrypt it.")
+
+# Füge diese Zeile hinzu, damit das Skript nur ausgeführt wird, wenn es direkt aufgerufen wird
+if __name__ == "__main__":
+    fernet_encryption()
