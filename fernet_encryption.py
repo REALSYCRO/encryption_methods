@@ -51,6 +51,7 @@ def encrypt(filename, key):
     # write the encrypted file
     with open(filename, "wb") as file:
         file.write(encrypted_data)
+        print(f"{Fore.GREEN}[+]{Fore.RESET} File encrypted")
 
 def decrypt(filename, key):
     """Given a filename (str) and key (bytes), it decrypts the file and write it"""
