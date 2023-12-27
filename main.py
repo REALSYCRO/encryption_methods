@@ -6,7 +6,6 @@ from rsa_encryption import generate_rsa_key_pair, rsa_encrypt, rsa_decrypt, rsa_
 from fernet_encryption import encrypt, decrypt, encrypt_folder, decrypt_folder, generate_key
 import time
 import getpass
-import pathlib
 
 
 def clear_console():
@@ -82,7 +81,8 @@ def main():
                         rsa_decrypt_file(filename=path, private_key=private_key)
                         print("[+] Finished file decryption")
                     elif os.path.isdir(path):
-                        print("[-] Error: RSA decryption of folders is not supported")
+                        rsa_decrypt_folder(foldername=path, private_key=private_key)
+                        print("[+] Finished")
                     else:
                         print("[-] Error, maybe the wrong path?")
             except Exception as e:

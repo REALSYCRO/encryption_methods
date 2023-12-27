@@ -103,7 +103,7 @@ def rsa_encrypt_folder(foldername, public_key):
 
 def rsa_decrypt_folder(foldername, private_key):
     for child in pathlib.Path(foldername).glob("*"):
-        if child.is_file() and child.suffix == ".encrypted":
+        if child.is_file():
             print(f"[*] Decrypting {child}")
             rsa_decrypt_file(str(child), private_key)
         elif child.is_dir():

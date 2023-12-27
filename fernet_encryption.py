@@ -135,6 +135,5 @@ def fernet_encryption():
     else:
         raise TypeError("Please specify whether you want to encrypt the file or decrypt it.")
 
-# Füge diese Zeile hinzu, damit das Skript nur ausgeführt wird, wenn es direkt aufgerufen wird
 if __name__ == "__main__":
     fernet_encryption()
