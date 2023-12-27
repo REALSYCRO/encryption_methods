@@ -9,3 +9,6 @@ If you execute this file, you can use the different encryption types in a comman
 
 # `fernet_encryption.py`
 An AES-265-bit encryption according to the fernet scheme
+
+# `rsa_encryption.py`
+An RSA encryption method
