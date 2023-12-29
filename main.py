@@ -13,11 +13,11 @@ def clear_console():
 
 def main():
     print("""
-          Which encryption method do you want to use?
+Which encryption method do you want to use?
           
-          [1] AES x Fernet - Method
-          [2] RSA - Method
-          [0] Exit\n
+    [1] AES x Fernet - Method
+    [2] RSA - Method
+    [0] Exit\n
           """)
     
     choice = input("Please select your choice:\n")
